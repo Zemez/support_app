@@ -1,2 +1,7 @@
-h1 Home#index
-p Find me in app/views/home/index.html.slim
+doctype html
+html
+  head
+  body
+    h1 Welcome to my home page
+    p wow, you visit that page #{session[:times_here]} times
+    p another test: #{session[:switch]}
