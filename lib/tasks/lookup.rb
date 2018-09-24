@@ -1,20 +1,24 @@
 class Lookup
-  # attr_accessor :tree
+  attr_accessor :pattern, :print_files
   TreeStruct = Struct.new(:path, :dirs, :files)
 
   def initialize(path)
+    @pattern = ''
+    @print_files = false
     @tree = dir_look(path)
   end
 
   def look(pattern, print_files = true)
     # puts "Всего файлов '#{pattern}': #{looking(@tree, pattern)}"
     # pattern = Regexp.new(pattern)
-    looking(@tree, pattern, print_files)
+    @pattern = pattern
+    @print_files = print_files
+    looking(@tree)
   end
 
   private
 
-  def looking(tree, pattern, print_files, prefix = '', last = false)
+  def looking(tree, prefix = '', last = false)
     count = 0
     tag = last ? '└─ ' : '├─ '
     dir_name = prefix.empty? ? "#{tree.path}" : File.basename(tree.path) #tree.path.sub(/^.+\/(.??)/, '\1')
@@ -22,16 +26,16 @@ class Lookup
     pre = prefix + (prefix.empty? ? ' ' : (last ? '   ' : '│  '))
     if File.readable?(tree.path)
       tree.dirs.each do |dir|
-        last = dir == tree.dirs.last && (tree.files.empty? || !print_files)
-        count += looking(dir, pattern, print_files, pre, last)
+        last = dir == tree.dirs.last && (tree.files.empty? || !@print_files)
+        count += looking(dir, pre, last)
       end
       tree.files.each do |file|
         last = file == tree.files.last 
         tag = last ? '└─ ' : '├─ '
-        if print_files
-          puts "#{pre}#{tag}#{file}" + ((File.fnmatch(pattern, file) && count += 1) ? " + (#{count})" : '')
+        if @print_files
+          puts "#{pre}#{tag}#{file}" + ((File.fnmatch(@pattern, file) && count += 1) ? " + (#{count})" : '')
         else
-          count += 1 if pattern =~ file
+          count += 1 if @pattern =~ file
         end
       end
       count.tap do |c|
