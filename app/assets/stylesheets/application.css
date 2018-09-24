@@ -13,3 +13,28 @@
  *= require_tree .
  *= require_self
  */
+nav > a {
+  padding: 4px 8px;
+  color: darkcyan;
+  text-decoration: none;
+  border: 1px solid #FFF;
+  border-radius: 5px;
+}
+
+nav > a:hover {
+  border: 1px solid darkcyan;
+}
+
+h1 {
+  color: seagreen;
+}
+
+p {
+  color: blue;
+}
+
+footer > p {
+  margin: 0;
+  font-size: 0.8em;
+  color: gray;
+}
