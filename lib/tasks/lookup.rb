@@ -37,7 +37,7 @@ class Lookup
       count.tap do |c|
         mod = c % 10
         cuter = c > 10 && c < 20 || mod == 0 || mod >= 5 ? 'файлов' : (mod == 1 ? 'файл' : 'файла') 
-        puts "#{pre}Всего [#{dir_name}]: #{c} #{cuter}"
+        puts "#{pre}Всего [#{dir_name}]: #{c} ruby #{cuter}"
       end
     else
       puts "#{pre} *** нет доступа! ***"
