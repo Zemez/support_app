@@ -18,6 +18,9 @@ gem 'webpacker'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
 
+# Шаблонизатор slim
+gem 'slim-rails'
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password

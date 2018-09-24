@@ -11,8 +11,6 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   database: support_db
   username: rails
-# без пароля не заработало, в настройках postgresql так настроено, потом переделаю
-  password: r1r2r3r4
 
 development:
   <<: *default
