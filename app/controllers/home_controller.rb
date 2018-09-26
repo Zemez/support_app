@@ -4,4 +4,7 @@ class HomeController < ApplicationController
     session[:times_here] += 1
     session[:switch] = session[:switch] ? false : true
   end
+
+  def about
+  end
 end
